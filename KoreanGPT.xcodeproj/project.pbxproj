@@ -9,21 +9,19 @@
 /* Begin PBXBuildFile section */
 		55C3651F28B45FD200F697F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3651E28B45FD200F697F5 /* AppDelegate.swift */; };
 		55C3652128B45FD200F697F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3652028B45FD200F697F5 /* SceneDelegate.swift */; };
-		55C3652328B45FD200F697F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3652228B45FD200F697F5 /* ViewController.swift */; };
-		55C3652628B45FD200F697F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C3652428B45FD200F697F5 /* Main.storyboard */; };
 		55C3652828B45FD300F697F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55C3652728B45FD300F697F5 /* Assets.xcassets */; };
-		55C3652B28B45FD300F697F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55C3652928B45FD300F697F5 /* LaunchScreen.storyboard */; };
+		55C3653328B469AB00F697F5 /* OpenAIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3653228B469AB00F697F5 /* OpenAIManager.swift */; };
+		55C3653528B46AB400F697F5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3653428B46AB400F697F5 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		55C3651B28B45FD200F697F5 /* KoreanGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KoreanGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C3651E28B45FD200F697F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55C3652028B45FD200F697F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		55C3652228B45FD200F697F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		55C3652528B45FD200F697F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55C3652728B45FD300F697F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		55C3652A28B45FD300F697F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55C3652C28B45FD300F697F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55C3653228B469AB00F697F5 /* OpenAIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIManager.swift; sourceTree = "<group>"; };
+		55C3653428B46AB400F697F5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +54,22 @@
 		55C3651D28B45FD200F697F5 /* KoreanGPT */ = {
 			isa = PBXGroup;
 			children = (
-				55C3651E28B45FD200F697F5 /* AppDelegate.swift */,
+				55C3653228B469AB00F697F5 /* OpenAIManager.swift */,
+				55C3653628B46AE800F697F5 /* ViewController */,
 				55C3652028B45FD200F697F5 /* SceneDelegate.swift */,
-				55C3652228B45FD200F697F5 /* ViewController.swift */,
-				55C3652428B45FD200F697F5 /* Main.storyboard */,
+				55C3651E28B45FD200F697F5 /* AppDelegate.swift */,
 				55C3652728B45FD300F697F5 /* Assets.xcassets */,
-				55C3652928B45FD300F697F5 /* LaunchScreen.storyboard */,
 				55C3652C28B45FD300F697F5 /* Info.plist */,
 			);
 			path = KoreanGPT;
+			sourceTree = "<group>";
+		};
+		55C3653628B46AE800F697F5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				55C3653428B46AB400F697F5 /* MainViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55C3652B28B45FD300F697F5 /* LaunchScreen.storyboard in Resources */,
 				55C3652828B45FD300F697F5 /* Assets.xcassets in Resources */,
-				55C3652628B45FD200F697F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,32 +141,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55C3652328B45FD200F697F5 /* ViewController.swift in Sources */,
+				55C3653328B469AB00F697F5 /* OpenAIManager.swift in Sources */,
 				55C3651F28B45FD200F697F5 /* AppDelegate.swift in Sources */,
 				55C3652128B45FD200F697F5 /* SceneDelegate.swift in Sources */,
+				55C3653528B46AB400F697F5 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		55C3652428B45FD200F697F5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55C3652528B45FD200F697F5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		55C3652928B45FD300F697F5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55C3652A28B45FD300F697F5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		55C3652D28B45FD300F697F5 /* Debug */ = {
@@ -292,7 +277,7 @@
 				INFOPLIST_FILE = KoreanGPT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +305,7 @@
 				INFOPLIST_FILE = KoreanGPT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
