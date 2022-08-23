@@ -25,11 +25,11 @@ class MainViewController: UIViewController {
         return textField
     }()
     
-    private var outputTextField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = .black
-        textField.backgroundColor = .gray
-        return textField
+    private var outputTextView: UITextView = {
+        let textView = UITextView()
+        textView.textColor = .black
+        textView.backgroundColor = .gray
+        return textView
     }()
     
     lazy var sendingToOpenAIButton: UIButton = {
@@ -61,7 +61,7 @@ class MainViewController: UIViewController {
         
         OpenAIManager.shared.makeRequest(json: jsonPayload) { [weak self] (str) in
             DispatchQueue.main.async {
-                self?.outputTextField.text = str
+                self?.outputTextView.text = str
                 
                 spinner.stopAnimating()
                 spinner.removeFromSuperview()
@@ -74,7 +74,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        [guidingTextLabel, inputTextField,outputTextField, sendingToOpenAIButton].forEach {
+        [guidingTextLabel, inputTextField,outputTextView, sendingToOpenAIButton].forEach {
             view.addSubview($0)
         }
         configureConstraints()
@@ -83,7 +83,7 @@ class MainViewController: UIViewController {
     private func configureConstraints() {
         guidingTextLabel.translatesAutoresizingMaskIntoConstraints = false
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
-        outputTextField.translatesAutoresizingMaskIntoConstraints = false
+        outputTextView.translatesAutoresizingMaskIntoConstraints = false
         sendingToOpenAIButton.translatesAutoresizingMaskIntoConstraints = false
         
         guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -91,12 +91,15 @@ class MainViewController: UIViewController {
         
         inputTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputTextField.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
+        inputTextField.widthAnchor.constraint(equalToConstant: 340).isActive = true
         
-        outputTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        outputTextField.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
+        outputTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        outputTextView.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
+        outputTextView.widthAnchor.constraint(equalToConstant: 340).isActive = true
+        outputTextView.heightAnchor.constraint(equalToConstant: 380).isActive = true
         
         sendingToOpenAIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextField.bottomAnchor, constant: view.bounds.height * 0.55).isActive = true
+        sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
     }
     
 }
