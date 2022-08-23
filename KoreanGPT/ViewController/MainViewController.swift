@@ -18,14 +18,14 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    private var inputText: UITextField = {
+    private var inputTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
         textField.backgroundColor = .gray
         return textField
     }()
     
-    private var outputText: UITextField = {
+    private var outputTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
         textField.backgroundColor = .gray
@@ -39,20 +39,42 @@ class MainViewController: UIViewController {
         button.backgroundColor = .yellow
         
         button.addTarget(self,
-                         action: #selector(nextButtonTapped),
+                         action: #selector(sendingToOpenAIButtonTapped),
                          for: .touchUpInside)
         return button
     }()
     
-    @objc private func nextButtonTapped() {
+    @objc private func sendingToOpenAIButtonTapped() {
+        let jsonPayload = [
+            "prompt": inputTextField.text ?? "",
+            "max_tokens": 200
+        ] as [String : Any]
         
+        let view = UIView(frame: self.view.bounds)
+        view.backgroundColor = .darkGray
+        view.alpha = 0.8
+        self.view.addSubview(view)
+        let spinner = UIActivityIndicatorView(frame: self.view.bounds)
+        spinner.color = .lightGray
+        self.view.addSubview(spinner)
+        spinner.startAnimating()
+        
+        OpenAIManager.shared.makeRequest(json: jsonPayload) { [weak self] (str) in
+            DispatchQueue.main.async {
+                self?.outputTextField.text = str
+                
+                spinner.stopAnimating()
+                spinner.removeFromSuperview()
+                view.removeFromSuperview()
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        [guidingTextLabel, inputText,outputText, sendingToOpenAIButton].forEach {
+        [guidingTextLabel, inputTextField,outputTextField, sendingToOpenAIButton].forEach {
             view.addSubview($0)
         }
         configureConstraints()
@@ -60,21 +82,21 @@ class MainViewController: UIViewController {
     
     private func configureConstraints() {
         guidingTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        inputText.translatesAutoresizingMaskIntoConstraints = false
-        outputText.translatesAutoresizingMaskIntoConstraints = false
+        inputTextField.translatesAutoresizingMaskIntoConstraints = false
+        outputTextField.translatesAutoresizingMaskIntoConstraints = false
         sendingToOpenAIButton.translatesAutoresizingMaskIntoConstraints = false
         
         guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         guidingTextLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.2).isActive = true
         
-        inputText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        inputText.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
+        inputTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        inputTextField.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
         
-        outputText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        outputText.topAnchor.constraint(equalTo: inputText.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
+        outputTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        outputTextField.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
         
         sendingToOpenAIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        sendingToOpenAIButton.topAnchor.constraint(equalTo: outputText.bottomAnchor, constant: view.bounds.height * 0.55).isActive = true
+        sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextField.bottomAnchor, constant: view.bounds.height * 0.55).isActive = true
     }
     
 }
