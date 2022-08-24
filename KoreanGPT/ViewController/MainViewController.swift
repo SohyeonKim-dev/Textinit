@@ -6,29 +6,37 @@
 //
 
 import UIKit
+import MLKitTranslate
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+    
+    private let mlKit = MLKitManager()
     
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "입력해주세요"
+        label.text = "단어를 입력해주세요 🌽"
         label.textColor = .black
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         return label
     }()
     
     private var inputTextField: UITextField = {
         let textField = UITextField()
+        textField.textAlignment = .center
         textField.textColor = .black
-        textField.backgroundColor = .gray
+        textField.layer.cornerRadius = 5
+        textField.layer.borderWidth = 2
+        textField.layer.borderColor = UIColor.systemGreen.cgColor
         return textField
     }()
     
     private var outputTextView: UITextView = {
         let textView = UITextView()
         textView.textColor = .black
-        textView.backgroundColor = .gray
+        textView.layer.cornerRadius = 5
+        textView.layer.borderWidth = 2
+        textView.layer.borderColor = UIColor.darkGray.cgColor
         return textView
     }()
     
@@ -36,7 +44,9 @@ class MainViewController: UIViewController {
         let button = UIButton()
         button.setTitle("OpenAI", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = .yellow
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.darkGray.cgColor
         
         button.addTarget(self,
                          action: #selector(sendingToOpenAIButtonTapped),
@@ -80,6 +90,12 @@ class MainViewController: UIViewController {
         configureConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        inputTextField.delegate = self
+        outputTextView.delegate = self
+    }
+    
     private func configureConstraints() {
         guidingTextLabel.translatesAutoresizingMaskIntoConstraints = false
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -87,19 +103,26 @@ class MainViewController: UIViewController {
         sendingToOpenAIButton.translatesAutoresizingMaskIntoConstraints = false
         
         guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        guidingTextLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.2).isActive = true
+        guidingTextLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.15).isActive = true
         
         inputTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputTextField.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
-        inputTextField.widthAnchor.constraint(equalToConstant: 340).isActive = true
+        inputTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        inputTextField.widthAnchor.constraint(equalToConstant: 330).isActive = true
         
         outputTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        outputTextView.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
-        outputTextView.widthAnchor.constraint(equalToConstant: 340).isActive = true
-        outputTextView.heightAnchor.constraint(equalToConstant: 380).isActive = true
+        outputTextView.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: view.bounds.height * 0.03).isActive = true
+        outputTextView.widthAnchor.constraint(equalToConstant: 330).isActive = true
+        outputTextView.heightAnchor.constraint(equalToConstant: 360).isActive = true
         
         sendingToOpenAIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
+        sendingToOpenAIButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        sendingToOpenAIButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
     }
-    
 }
+
+
+// TODO: delegate file 분리
+// TODO: layer extension 분리
+// TODO: translate 구현
