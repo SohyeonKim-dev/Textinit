@@ -24,7 +24,7 @@ class OpenAIManager {
     
     static let shared = OpenAIManager()
     
-    var engine: OpenAIEngine = .babbage
+    var engine: OpenAIEngine = .davinci
 
     func makeRequest(json: [String: Any], completion: @escaping (String)->()) {
         guard let url = URL(string: "https://api.openai.com/v1/engines/\(engine)/completions"),

@@ -10,11 +10,13 @@ import MLKitTranslate
 
 class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
-    private let mlKit = MLKitManager()
+    private var mlKit = MLKitManager()
+    private var inputKoreanWord: String = ""
+    private var outputKoreanWord: String = ""
     
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "단어를 입력해주세요 🌽"
+        label.text = "🪴 단어를 입력해주세요"
         label.textColor = .black
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -46,7 +48,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         button.setTitleColor(UIColor.black, for: .normal)
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.darkGray.cgColor
+        button.layer.borderColor = UIColor.systemYellow.cgColor
         
         button.addTarget(self,
                          action: #selector(sendingToOpenAIButtonTapped),
@@ -55,8 +57,15 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }()
     
     @objc private func sendingToOpenAIButtonTapped() {
+        
+        self.inputKoreanWord = inputTextField.text as String? ?? ""
+        mlKit.translatingKoreanToEnglish(text: inputKoreanWord)
+        mlKit.modelDownload() // TODO: 제거
+        
+        let inputEnglishWord = mlKit.resultEnglishText
+        
         let jsonPayload = [
-            "prompt": inputTextField.text ?? "",
+            "prompt": inputEnglishWord,
             "max_tokens": 200
         ] as [String : Any]
         
@@ -70,15 +79,44 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         spinner.startAnimating()
         
         OpenAIManager.shared.makeRequest(json: jsonPayload) { [weak self] (str) in
+  
             DispatchQueue.main.async {
-                self?.outputTextView.text = str
-                
+                self?.mlKit.translatinEnglishToKorean(text: str) {
+                    self?.outputKoreanWord = self?.mlKit.resultKoreanText ?? ""
+                    self?.outputTextView.text = self?.outputKoreanWord
+                }
                 spinner.stopAnimating()
                 spinner.removeFromSuperview()
                 view.removeFromSuperview()
             }
         }
     }
+    
+//    @objc private func sendingToOpenAIButtonTapped() {
+//        let jsonPayload = [
+//            "prompt": inputTextField.text ?? "",
+//            "max_tokens": 200
+//        ] as [String : Any]
+//
+//        let view = UIView(frame: self.view.bounds)
+//        view.backgroundColor = .darkGray
+//        view.alpha = 0.8
+//        self.view.addSubview(view)
+//        let spinner = UIActivityIndicatorView(frame: self.view.bounds)
+//        spinner.color = .lightGray
+//        self.view.addSubview(spinner)
+//        spinner.startAnimating()
+//
+//        OpenAIManager.shared.makeRequest(json: jsonPayload) { [weak self] (str) in
+//            DispatchQueue.main.async {
+//                self?.outputTextView.text = str
+//
+//                spinner.stopAnimating()
+//                spinner.removeFromSuperview()
+//                view.removeFromSuperview()
+//            }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +125,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         [guidingTextLabel, inputTextField,outputTextView, sendingToOpenAIButton].forEach {
             view.addSubview($0)
         }
+        
         configureConstraints()
     }
     
@@ -122,7 +161,9 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
 }
 
-
+// TODO: 주석 정리
 // TODO: delegate file 분리
 // TODO: layer extension 분리
-// TODO: translate 구현
+// TODO: 복사하기 기능
+// TODO: 어플 이름 변경
+// TODO: app image 제작, UI Design 간단하게 HIG
