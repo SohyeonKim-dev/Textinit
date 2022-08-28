@@ -11,7 +11,6 @@ import MLKitTranslate
 class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     private var mlKit = MLKitManager()
-    
     @Published var inputKoreanWord: String = ""
     @Published var outputKoreanWord: String = ""
     
@@ -29,7 +28,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         textField.textAlignment = .center
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 18, weight: .regular)
-        
+    
         textField.layer.cornerRadius = 5
         textField.layer.borderWidth = 2
         textField.layer.borderColor = UIColor.systemGreen.cgColor
@@ -51,6 +50,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         let button = UIButton()
         button.setTitle("OpenAI", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
+        
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.systemYellow.cgColor
@@ -139,7 +139,5 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
 }
 
-// TODO: delegate file 분리
 // TODO: 복사하기 기능
-// TODO: 어플 이름 변경
 // TODO: app image 제작, UI Design 간단하게 HIG
