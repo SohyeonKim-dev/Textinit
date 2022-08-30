@@ -8,7 +8,7 @@
 import UIKit
 import MLKitTranslate
 
-class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class MainViewController: UIViewController, UITextViewDelegate {
     
     private var mlKit = MLKitManager()
     @Published var inputKoreanWord: String = ""
@@ -46,13 +46,9 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         return textView
     }()
     
-    lazy var sendingToOpenAIButton: UIButton = {
-        let button = UIButton()
+    lazy var sendingToOpenAIButton: UIButtonExtension = {
+        let button = UIButtonExtension()
         button.setTitle("OpenAI", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        
-        button.layer.cornerRadius = 5
-        button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.systemYellow.cgColor
         
         button.addTarget(self,
@@ -132,12 +128,18 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         outputTextView.widthAnchor.constraint(equalToConstant: 330).isActive = true
         outputTextView.heightAnchor.constraint(equalToConstant: 360).isActive = true
         
+        // 복붙 버튼
+        
         sendingToOpenAIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
-        sendingToOpenAIButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        sendingToOpenAIButton.widthAnchor.constraint(equalToConstant: 330).isActive = true
     }
 }
 
-// TODO: 복사하기 기능
-// TODO: app image 제작, UI Design 간단하게 HIG
+extension MainViewController: UITextFieldDelegate {
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         view.endEditing(true)
+         return false
+     }
+ }
+
+// TODO: 복사하기 기능, 폰에서 화면 안뜨는 문제
