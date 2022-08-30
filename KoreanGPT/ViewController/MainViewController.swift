@@ -94,6 +94,7 @@ class MainViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mlKit.modelDownload()
         view.backgroundColor = .white
         
         [guidingTextLabel, inputTextField,outputTextView, sendingToOpenAIButton].forEach {
@@ -141,5 +142,3 @@ extension MainViewController: UITextFieldDelegate {
          return false
      }
  }
-
-// TODO: 복사하기 기능, 폰에서 화면 안뜨는 문제
