@@ -37,12 +37,10 @@ class MLKitManager {
         }
     }
     
-    func translatinEnglishToKorean(text: String, completion: @escaping () -> Void){
+    func translatinEnglishToKorean(text: String, completion: @escaping () -> Void) {
         englishToKoreanTranslator.translate(text) { [self] translatedText, error in
             self.resultKoreanText = translatedText ?? ""
             completion()
-            
-            // TODO: completion handler
         }
     }
 }

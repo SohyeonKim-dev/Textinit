@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55BC0B1B28BB8EFC00080335 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BC0B1A28BB8EFC00080335 /* SelectViewController.swift */; };
+		55BC0B1E28BB8FDB00080335 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BC0B1D28BB8FDB00080335 /* UIButton+Extension.swift */; };
 		55BD290B28B47FD200D96055 /* MLKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BD290A28B47FD200D96055 /* MLKitManager.swift */; };
 		55C3651F28B45FD200F697F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3651E28B45FD200F697F5 /* AppDelegate.swift */; };
 		55C3652128B45FD200F697F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C3652028B45FD200F697F5 /* SceneDelegate.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		295A0BF6E1D1FC94BFEB70B4 /* Pods-KoreanGPT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoreanGPT.release.xcconfig"; path = "Target Support Files/Pods-KoreanGPT/Pods-KoreanGPT.release.xcconfig"; sourceTree = "<group>"; };
+		55BC0B1A28BB8EFC00080335 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
+		55BC0B1D28BB8FDB00080335 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		55BD290A28B47FD200D96055 /* MLKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLKitManager.swift; sourceTree = "<group>"; };
 		55C3651B28B45FD200F697F5 /* KoreanGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KoreanGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C3651E28B45FD200F697F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		55BC0B1C28BB8F7C00080335 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				55BC0B1D28BB8FDB00080335 /* UIButton+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		55BD290928B47FB700D96055 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +105,7 @@
 				55C3653628B46AE800F697F5 /* ViewController */,
 				55C3652028B45FD200F697F5 /* SceneDelegate.swift */,
 				55C3651E28B45FD200F697F5 /* AppDelegate.swift */,
+				55BC0B1C28BB8F7C00080335 /* Extension */,
 				55C3652728B45FD300F697F5 /* Assets.xcassets */,
 				55C3652C28B45FD300F697F5 /* Info.plist */,
 			);
@@ -103,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				55C3653428B46AB400F697F5 /* MainViewController.swift */,
+				55BC0B1A28BB8EFC00080335 /* SelectViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -242,7 +256,9 @@
 				55C3651F28B45FD200F697F5 /* AppDelegate.swift in Sources */,
 				55C3652128B45FD200F697F5 /* SceneDelegate.swift in Sources */,
 				55C3653528B46AB400F697F5 /* MainViewController.swift in Sources */,
+				55BC0B1B28BB8EFC00080335 /* SelectViewController.swift in Sources */,
 				55BD290B28B47FD200D96055 /* MLKitManager.swift in Sources */,
+				55BC0B1E28BB8FDB00080335 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +319,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Textinit;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -356,6 +373,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = Textinit;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -374,6 +392,7 @@
 				DEVELOPMENT_TEAM = NHPUW6MZCU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KoreanGPT/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Textinit;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -403,6 +422,7 @@
 				DEVELOPMENT_TEAM = NHPUW6MZCU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KoreanGPT/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Textinit;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";

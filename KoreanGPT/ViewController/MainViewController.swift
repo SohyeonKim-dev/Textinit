@@ -11,8 +11,8 @@ import MLKitTranslate
 class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     private var mlKit = MLKitManager()
-    private var inputKoreanWord: String = ""
-    private var outputKoreanWord: String = ""
+    @Published var inputKoreanWord: String = ""
+    @Published var outputKoreanWord: String = ""
     
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
@@ -27,6 +27,8 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         let textField = UITextField()
         textField.textAlignment = .center
         textField.textColor = .black
+        textField.font = .systemFont(ofSize: 18, weight: .regular)
+    
         textField.layer.cornerRadius = 5
         textField.layer.borderWidth = 2
         textField.layer.borderColor = UIColor.systemGreen.cgColor
@@ -36,6 +38,8 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     private var outputTextView: UITextView = {
         let textView = UITextView()
         textView.textColor = .black
+        textView.font = .systemFont(ofSize: 15, weight: .regular)
+        
         textView.layer.cornerRadius = 5
         textView.layer.borderWidth = 2
         textView.layer.borderColor = UIColor.darkGray.cgColor
@@ -46,6 +50,7 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         let button = UIButton()
         button.setTitle("OpenAI", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
+        
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.systemYellow.cgColor
@@ -60,7 +65,6 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         self.inputKoreanWord = inputTextField.text as String? ?? ""
         mlKit.translatingKoreanToEnglish(text: inputKoreanWord)
-        mlKit.modelDownload() // TODO: 제거
         
         let inputEnglishWord = mlKit.resultEnglishText
         
@@ -91,32 +95,6 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             }
         }
     }
-    
-//    @objc private func sendingToOpenAIButtonTapped() {
-//        let jsonPayload = [
-//            "prompt": inputTextField.text ?? "",
-//            "max_tokens": 200
-//        ] as [String : Any]
-//
-//        let view = UIView(frame: self.view.bounds)
-//        view.backgroundColor = .darkGray
-//        view.alpha = 0.8
-//        self.view.addSubview(view)
-//        let spinner = UIActivityIndicatorView(frame: self.view.bounds)
-//        spinner.color = .lightGray
-//        self.view.addSubview(spinner)
-//        spinner.startAnimating()
-//
-//        OpenAIManager.shared.makeRequest(json: jsonPayload) { [weak self] (str) in
-//            DispatchQueue.main.async {
-//                self?.outputTextView.text = str
-//
-//                spinner.stopAnimating()
-//                spinner.removeFromSuperview()
-//                view.removeFromSuperview()
-//            }
-//        }
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,9 +139,5 @@ class MainViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
 }
 
-// TODO: 주석 정리
-// TODO: delegate file 분리
-// TODO: layer extension 분리
 // TODO: 복사하기 기능
-// TODO: 어플 이름 변경
 // TODO: app image 제작, UI Design 간단하게 HIG
