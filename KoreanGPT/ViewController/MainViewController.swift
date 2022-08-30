@@ -16,10 +16,10 @@ class MainViewController: UIViewController, UITextViewDelegate {
     
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "🪴 단어를 입력해주세요"
+        label.text = "🌻 단어를 입력해주세요"
         label.textColor = .black
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
     
@@ -31,7 +31,7 @@ class MainViewController: UIViewController, UITextViewDelegate {
     
         textField.layer.cornerRadius = 5
         textField.layer.borderWidth = 2
-        textField.layer.borderColor = UIColor.systemGreen.cgColor
+        textField.layer.borderColor = UIColor(named: "CustomYellow")?.cgColor
         return textField
     }()
     
@@ -42,9 +42,47 @@ class MainViewController: UIViewController, UITextViewDelegate {
         
         textView.layer.cornerRadius = 5
         textView.layer.borderWidth = 2
-        textView.layer.borderColor = UIColor.darkGray.cgColor
+        textView.layer.borderColor = UIColor(named: "CustomYellow")?.cgColor
         return textView
     }()
+    
+    lazy var outputCopyButton: UIButton = {
+        
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .medium)
+        
+        var titleAttr = AttributedString.init("텍스트 복사하기")
+        titleAttr.font = .boldSystemFont(ofSize: 14)
+        
+        var buttonConfiguration = UIButton.Configuration.plain()
+        buttonConfiguration.baseForegroundColor = .black
+        buttonConfiguration.imagePadding = 3
+        
+        let button: UIButton = UIButton()
+        button.configuration = buttonConfiguration
+        button.setImage(UIImage(systemName: "rectangle.portrait.on.rectangle.portrait", withConfiguration: imageConfiguration), for: .normal)
+        button.addTarget(self,
+                         action: #selector(outputCopyButtonTapped),
+                         for: .touchUpInside)
+        
+        button.alpha = 0.85
+        
+        return button
+    }()
+    
+    
+    @objc private func outputCopyButtonTapped() {
+        UIPasteboard.general.string = outputTextView.text
+        
+        let alertController = UIAlertController(title: "",
+                                                message: "클립보드에 복사되었습니다!",
+                                                preferredStyle: .actionSheet)
+        present(alertController, animated: true, completion: nil)
+        
+        let when = DispatchTime.now() + 0.5
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            alertController.dismiss(animated: true, completion: nil)
+        }
+    }
     
     lazy var sendingToOpenAIButton: UIButtonExtension = {
         let button = UIButtonExtension()
@@ -95,9 +133,9 @@ class MainViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mlKit.modelDownload()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "CustomWhite")
         
-        [guidingTextLabel, inputTextField,outputTextView, sendingToOpenAIButton].forEach {
+        [guidingTextLabel, inputTextField, outputTextView, outputCopyButton, sendingToOpenAIButton].forEach {
             view.addSubview($0)
         }
         
@@ -114,22 +152,24 @@ class MainViewController: UIViewController, UITextViewDelegate {
         guidingTextLabel.translatesAutoresizingMaskIntoConstraints = false
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
         outputTextView.translatesAutoresizingMaskIntoConstraints = false
+        outputCopyButton.translatesAutoresizingMaskIntoConstraints = false
         sendingToOpenAIButton.translatesAutoresizingMaskIntoConstraints = false
         
         guidingTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        guidingTextLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.15).isActive = true
+        guidingTextLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height * 0.18).isActive = true
         
         inputTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputTextField.topAnchor.constraint(equalTo: guidingTextLabel.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
-        inputTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        inputTextField.widthAnchor.constraint(equalToConstant: 330).isActive = true
+        inputTextField.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.06).isActive = true
+        inputTextField.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.80).isActive = true
         
         outputTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         outputTextView.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: view.bounds.height * 0.03).isActive = true
-        outputTextView.widthAnchor.constraint(equalToConstant: 330).isActive = true
+        outputTextView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.80).isActive = true
         outputTextView.heightAnchor.constraint(equalToConstant: 360).isActive = true
         
-        // 복붙 버튼
+        outputCopyButton.centerXAnchor.constraint(equalTo: outputTextView.rightAnchor, constant: -40).isActive = true
+        outputCopyButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: -60).isActive = true
         
         sendingToOpenAIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true

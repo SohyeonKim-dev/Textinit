@@ -11,10 +11,12 @@ class UIButtonExtension: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.setTitleColor(UIColor.black, for: .normal)
+        
+        self.layer.borderColor = UIColor(named: "CustomBlue")?.cgColor
         self.layer.cornerRadius = 5
         self.layer.borderWidth = 2
         
-        self.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.065).isActive = true
-        self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.85).isActive = true
+        self.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.06).isActive = true
+        self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.80).isActive = true
     }
 }
