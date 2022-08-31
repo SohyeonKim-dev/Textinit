@@ -12,8 +12,8 @@ class SelectViewController: UIViewController {
     private let appImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "AppImage")
-//        imageView.widthAnchor.constraint(equalTo: <#T##NSLayoutDimension#>, constant: <#T##CGFloat#>)
-//        imageView.heightAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutDimension>#>, constant: <#T##CGFloat#>)
+        imageView.widthAnchor.constraint(equalToConstant:  UIScreen.main.bounds.width * 0.245).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant:  UIScreen.main.bounds.height * 0.11).isActive = true
         return imageView
     }()
     

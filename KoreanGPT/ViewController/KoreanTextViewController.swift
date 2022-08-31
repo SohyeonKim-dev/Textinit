@@ -161,15 +161,13 @@ class KoreanTextViewController: UIViewController, UITextViewDelegate {
         outputTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         outputTextView.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: view.bounds.height * 0.03).isActive = true
         outputTextView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.80).isActive = true
-        outputTextView.heightAnchor.constraint(equalToConstant: 360).isActive = true
+        outputTextView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.44).isActive = true
         
         outputCopyButton.centerXAnchor.constraint(equalTo: outputTextView.rightAnchor, constant: -40).isActive = true
         outputCopyButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: -60).isActive = true
         
         sendingToOpenAIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: view.bounds.height * 0.03).isActive = true
-        
-        // TODO: 비율로 조정
     }
 }
 
