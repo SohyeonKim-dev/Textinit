@@ -1,22 +1,22 @@
 //
-//  MainViewController.swift
+//  EnglishTextViewController.swift
 //  KoreanGPT
 //
-//  Created by 김소현 on 2022/08/23.
+//  Created by 김소현 on 2022/08/31.
 //
 
 import UIKit
 import MLKitTranslate
 
-class MainViewController: UIViewController, UITextViewDelegate {
+class EnglishTextViewController: UIViewController, UITextViewDelegate {
     
     private var mlKit = MLKitManager()
     @Published var inputKoreanWord: String = ""
     @Published var outputKoreanWord: String = ""
-    
+
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "단어를 입력해주세요"
+        label.text = "Please enter a word"
         label.textColor = .black
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -47,25 +47,21 @@ class MainViewController: UIViewController, UITextViewDelegate {
     }()
     
     lazy var outputCopyButton: UIButton = {
-        
+
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .medium)
-        
-        var titleAttr = AttributedString.init("텍스트 복사하기")
-        titleAttr.font = .boldSystemFont(ofSize: 14)
         
         var buttonConfiguration = UIButton.Configuration.plain()
         buttonConfiguration.baseForegroundColor = .black
         buttonConfiguration.imagePadding = 3
         
         let button: UIButton = UIButton()
+        button.alpha = 0.85
         button.configuration = buttonConfiguration
         button.setImage(UIImage(systemName: "rectangle.portrait.on.rectangle.portrait", withConfiguration: imageConfiguration), for: .normal)
+        
         button.addTarget(self,
                          action: #selector(outputCopyButtonTapped),
                          for: .touchUpInside)
-        
-        button.alpha = 0.85
-        
         return button
     }()
     
@@ -73,7 +69,7 @@ class MainViewController: UIViewController, UITextViewDelegate {
         UIPasteboard.general.string = outputTextView.text
         
         let alertController = UIAlertController(title: "",
-                                                message: "클립보드에 복사되었습니다!",
+                                                message: "Copy to clipboard!",
                                                 preferredStyle: .actionSheet)
         present(alertController, animated: true, completion: nil)
         
@@ -90,17 +86,14 @@ class MainViewController: UIViewController, UITextViewDelegate {
         button.layer.backgroundColor = UIColor(named: "CustomBlue")?.cgColor
         
         button.addTarget(self,
-                         action: #selector(sendingToOpenAIButtonTapped),
+                         action: #selector(englishGPTButtonTapped),
                          for: .touchUpInside)
         return button
     }()
     
-    @objc private func sendingToOpenAIButtonTapped() {
+    @objc private func englishGPTButtonTapped() {
         
-        self.inputKoreanWord = inputTextField.text as String? ?? ""
-        mlKit.translatingKoreanToEnglish(text: inputKoreanWord)
-        
-        let inputEnglishWord = mlKit.resultEnglishText
+        let inputEnglishWord = inputTextField.text as String? ?? ""
         
         let jsonPayload = [
             "prompt": inputEnglishWord,
@@ -117,12 +110,8 @@ class MainViewController: UIViewController, UITextViewDelegate {
         spinner.startAnimating()
         
         OpenAIManager.shared.makeRequest(json: jsonPayload) { [weak self] (str) in
-  
             DispatchQueue.main.async {
-                self?.mlKit.translatinEnglishToKorean(text: str) {
-                    self?.outputKoreanWord = self?.mlKit.resultKoreanText ?? ""
-                    self?.outputTextView.text = self?.outputKoreanWord
-                }
+                self?.outputTextView.text = str
                 spinner.stopAnimating()
                 spinner.removeFromSuperview()
                 view.removeFromSuperview()
@@ -173,12 +162,15 @@ class MainViewController: UIViewController, UITextViewDelegate {
         
         sendingToOpenAIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: view.bounds.height * 0.03).isActive = true
+        
+        // TODO: 비율로 조정
     }
 }
 
-extension MainViewController: UITextFieldDelegate {
+extension EnglishTextViewController: UITextFieldDelegate {
      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
          view.endEditing(true)
          return false
      }
  }
+

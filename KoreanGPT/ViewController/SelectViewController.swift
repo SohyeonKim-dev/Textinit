@@ -10,10 +10,12 @@ import UIKit
 class SelectViewController: UIViewController {
     
     private let appImageView: UIImageView = {
-          let theImageView = UIImageView()
-          theImageView.image = UIImage(named: "AppImage")
-          return theImageView
-       }()
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "AppImage")
+//        imageView.widthAnchor.constraint(equalTo: <#T##NSLayoutDimension#>, constant: <#T##CGFloat#>)
+//        imageView.heightAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutDimension>#>, constant: <#T##CGFloat#>)
+        return imageView
+    }()
     
     private let appTiTleLabel: UILabel = {
         let label = UILabel()
@@ -27,7 +29,7 @@ class SelectViewController: UIViewController {
     lazy var koreanSettingButton: UIButtonExtension = {
         let button = UIButtonExtension()
         button.setTitle("한국어", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.layer.backgroundColor = UIColor(named: "CustomWhite")?.cgColor
         
         button.addTarget(self,
@@ -37,13 +39,14 @@ class SelectViewController: UIViewController {
     }()
     
     @objc private func koreanSettingButtonTapped() {
-                
+        let koreanTextCreatingViewController = KoreanTextViewController()
+        self.navigationController?.pushViewController(koreanTextCreatingViewController, animated: true)
     }
     
     lazy var englishSettingButton: UIButtonExtension = {
         let button = UIButtonExtension()
         button.setTitle("영어", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.layer.backgroundColor = UIColor(named: "CustomWhite")?.cgColor
         
         button.addTarget(self,
@@ -53,7 +56,8 @@ class SelectViewController: UIViewController {
     }()
     
     @objc private func englishSettingButtonTapped() {
-                
+        let englishTextViewController = EnglishTextViewController()
+        self.navigationController?.pushViewController(englishTextViewController, animated: true)
     }
     
     override func viewDidLoad() {
@@ -86,7 +90,3 @@ class SelectViewController: UIViewController {
         englishSettingButton.topAnchor.constraint(equalTo: koreanSettingButton.bottomAnchor, constant: view.bounds.height * 0.03).isActive = true
     }
 }
-
-// TODO: 영어, 한국어 모드 선택
-// 버튼이 눌리면, 함수 변경하는 동작 구현
-// 네비게이션 연결
