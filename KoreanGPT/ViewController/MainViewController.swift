@@ -16,7 +16,7 @@ class MainViewController: UIViewController, UITextViewDelegate {
     
     private let guidingTextLabel: UILabel = {
         let label = UILabel()
-        label.text = "🌻 단어를 입력해주세요"
+        label.text = "단어를 입력해주세요"
         label.textColor = .black
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -31,7 +31,7 @@ class MainViewController: UIViewController, UITextViewDelegate {
     
         textField.layer.cornerRadius = 5
         textField.layer.borderWidth = 2
-        textField.layer.borderColor = UIColor(named: "CustomYellow")?.cgColor
+        textField.layer.borderColor = UIColor(named: "CustomBlue")?.cgColor
         return textField
     }()
     
@@ -42,7 +42,7 @@ class MainViewController: UIViewController, UITextViewDelegate {
         
         textView.layer.cornerRadius = 5
         textView.layer.borderWidth = 2
-        textView.layer.borderColor = UIColor(named: "CustomYellow")?.cgColor
+        textView.layer.borderColor = UIColor(named: "CustomBlue")?.cgColor
         return textView
     }()
     
@@ -69,7 +69,6 @@ class MainViewController: UIViewController, UITextViewDelegate {
         return button
     }()
     
-    
     @objc private func outputCopyButtonTapped() {
         UIPasteboard.general.string = outputTextView.text
         
@@ -87,7 +86,8 @@ class MainViewController: UIViewController, UITextViewDelegate {
     lazy var sendingToOpenAIButton: UIButtonExtension = {
         let button = UIButtonExtension()
         button.setTitle("OpenAI", for: .normal)
-        button.layer.borderColor = UIColor.systemYellow.cgColor
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.layer.backgroundColor = UIColor(named: "CustomBlue")?.cgColor
         
         button.addTarget(self,
                          action: #selector(sendingToOpenAIButtonTapped),
@@ -172,7 +172,7 @@ class MainViewController: UIViewController, UITextViewDelegate {
         outputCopyButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: -60).isActive = true
         
         sendingToOpenAIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: view.bounds.height * 0.04).isActive = true
+        sendingToOpenAIButton.topAnchor.constraint(equalTo: outputTextView.bottomAnchor, constant: view.bounds.height * 0.03).isActive = true
     }
 }
 
