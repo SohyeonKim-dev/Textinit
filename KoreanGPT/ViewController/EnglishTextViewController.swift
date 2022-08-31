@@ -109,7 +109,7 @@ class EnglishTextViewController: UIViewController, UITextViewDelegate {
         self.view.addSubview(spinner)
         spinner.startAnimating()
         
-        OpenAIManager.shared.makeRequest(json: jsonPayload) { [weak self] (str) in
+        OpenAIManager.openAIManager.makeRequest(json: jsonPayload) { [weak self] (str) in
             DispatchQueue.main.async {
                 self?.outputTextView.text = str
                 spinner.stopAnimating()

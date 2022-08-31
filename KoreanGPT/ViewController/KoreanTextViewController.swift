@@ -111,7 +111,7 @@ class KoreanTextViewController: UIViewController, UITextViewDelegate {
         self.view.addSubview(spinner)
         spinner.startAnimating()
         
-        OpenAIManager.shared.makeRequest(json: jsonPayload) { [weak self] (str) in
+        OpenAIManager.openAIManager.makeRequest(json: jsonPayload) { [weak self] (str) in
   
             DispatchQueue.main.async {
                 self?.mlKit.translatinEnglishToKorean(text: str) {
