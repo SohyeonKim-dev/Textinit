@@ -22,7 +22,7 @@ enum OpenAIEngine: String {
 
 class OpenAIManager {
     
-    static let shared = OpenAIManager()
+    static let openAIManager = OpenAIManager()
     
     var engine: OpenAIEngine = .davinci
 
