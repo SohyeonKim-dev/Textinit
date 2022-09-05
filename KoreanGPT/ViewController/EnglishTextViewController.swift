@@ -40,6 +40,7 @@ class EnglishTextViewController: UIViewController, UITextViewDelegate {
         textView.textColor = .black
         textView.font = .systemFont(ofSize: 15, weight: .regular)
         
+        textView.isUserInteractionEnabled = false
         textView.layer.cornerRadius = 5
         textView.layer.borderWidth = 2
         textView.layer.borderColor = UIColor(named: "CustomBlue")?.cgColor

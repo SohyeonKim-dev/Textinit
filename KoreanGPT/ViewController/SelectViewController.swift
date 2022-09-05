@@ -90,3 +90,10 @@ class SelectViewController: UIViewController {
         englishSettingButton.topAnchor.constraint(equalTo: koreanSettingButton.bottomAnchor, constant: view.bounds.height * 0.03).isActive = true
     }
 }
+
+
+// TODO:
+// 리턴 문제 해결
+// : 버튼을 위로 올리자
+// 아이패드에서 복붙하면 죽는 문제 (UIAlertController)
+//

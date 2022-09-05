@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5507A23B28BEF22C00CFEB0F /* EnglishTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507A23A28BEF22C00CFEB0F /* EnglishTextViewController.swift */; };
+		5507A23D28BF3B9600CFEB0F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5507A23C28BF3B9600CFEB0F /* Launch Screen.storyboard */; };
 		55BC0B1B28BB8EFC00080335 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BC0B1A28BB8EFC00080335 /* SelectViewController.swift */; };
 		55BC0B1E28BB8FDB00080335 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BC0B1D28BB8FDB00080335 /* UIButton+Extension.swift */; };
 		55BD290B28B47FD200D96055 /* MLKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BD290A28B47FD200D96055 /* MLKitManager.swift */; };
@@ -22,10 +23,11 @@
 /* Begin PBXFileReference section */
 		295A0BF6E1D1FC94BFEB70B4 /* Pods-KoreanGPT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KoreanGPT.release.xcconfig"; path = "Target Support Files/Pods-KoreanGPT/Pods-KoreanGPT.release.xcconfig"; sourceTree = "<group>"; };
 		5507A23A28BEF22C00CFEB0F /* EnglishTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishTextViewController.swift; sourceTree = "<group>"; };
+		5507A23C28BF3B9600CFEB0F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		55BC0B1A28BB8EFC00080335 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		55BC0B1D28BB8FDB00080335 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		55BD290A28B47FD200D96055 /* MLKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLKitManager.swift; sourceTree = "<group>"; };
-		55C3651B28B45FD200F697F5 /* KoreanGPT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KoreanGPT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		55C3651B28B45FD200F697F5 /* Textinit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Textinit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C3651E28B45FD200F697F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55C3652028B45FD200F697F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		55C3652728B45FD300F697F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,7 +97,7 @@
 		55C3651C28B45FD200F697F5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				55C3651B28B45FD200F697F5 /* KoreanGPT.app */,
+				55C3651B28B45FD200F697F5 /* Textinit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +110,7 @@
 				55BC0B1C28BB8F7C00080335 /* Extension */,
 				55C3651E28B45FD200F697F5 /* AppDelegate.swift */,
 				55C3652028B45FD200F697F5 /* SceneDelegate.swift */,
+				5507A23C28BF3B9600CFEB0F /* Launch Screen.storyboard */,
 				55C3652728B45FD300F697F5 /* Assets.xcassets */,
 				55C3652C28B45FD300F697F5 /* Info.plist */,
 			);
@@ -144,7 +147,7 @@
 			);
 			name = KoreanGPT;
 			productName = KoreanGPT;
-			productReference = 55C3651B28B45FD200F697F5 /* KoreanGPT.app */;
+			productReference = 55C3651B28B45FD200F697F5 /* Textinit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -185,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5507A23D28BF3B9600CFEB0F /* Launch Screen.storyboard in Resources */,
 				55C3652828B45FD300F697F5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +323,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -374,6 +380,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -391,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NHPUW6MZCU;
@@ -400,15 +409,18 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Colli.KoreanGPT;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Colli.Textinit;
+				PRODUCT_NAME = Textinit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -421,6 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NHPUW6MZCU;
@@ -430,15 +443,18 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Colli.KoreanGPT;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Colli.Textinit;
+				PRODUCT_NAME = Textinit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
