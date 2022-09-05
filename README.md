@@ -1,5 +1,11 @@
-# KoreanGPT
+# Textinit
 openAI &amp; ML Kit 을 활용한 한국어 텍스트 생성기
+
+
+#
+![172](https://user-images.githubusercontent.com/82718756/188345624-0e32d258-a7ab-4f8a-b8a8-943e0181a0ce.png)
+#
+
 
 ## Skills & Tech Stack
 - UIKit
