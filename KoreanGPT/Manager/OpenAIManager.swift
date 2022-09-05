@@ -8,7 +8,7 @@
 
 import UIKit
 
-let openAIKey = "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"
+let openAIKey = "openAIKey" // <- your key
 
 enum OpenAIEngine: String {
     case davinci
